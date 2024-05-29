@@ -1,0 +1,25 @@
+# 邮箱配置
+EMAIL_ADDRESS:
+EMAIL_USE_TLS: False
+EMAIL_USE_SSL: True
+EMAIL_HOST: smtp.qiye.aliyun.com
+EMAIL_PORT: 465
+EMAIL_HOST_USER: flux@megarobo.tech
+EMAIL_HOST_PASSWORD: Kcwj5gwxt5WY9J3z
+
+# 数据库链接信息
+DB_NAME: maxkb_dev
+# DB_HOST: 192.168.3.134
+DB_HOST: localhost
+DB_PORT: 5432
+DB_USER: maxkb_dev
+DB_PASSWORD: maxkb_dev
+#DB_USER: postgres
+#DB_PASSWORD: postgres
+DB_ENGINE: django.db.backends.postgresql_psycopg2
+# 模型配置
+EMBEDDING_MODEL_PATH: /Users/admin/Documents/maxkb/model/embedding
+EMBEDDING_MODEL_NAME: /Users/admin/Documents/maxkb/model/embedding/shibing624_text2vec-base-chinese
+DEBUG: false
+
+TIME_ZONE: Asia/Shanghai

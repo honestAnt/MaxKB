@@ -27,9 +27,11 @@ router.beforeEach(
     if (!notAuthRouteNameList.includes(to.name ? to.name.toString() : '')) {
       const token = user.getToken()
       if (!token) {
-        next({
-          path: '/login'
-        })
+        // next({
+        //   path: '/login'
+        // })
+        const  login_url = `http://localhost:18080/realms/flux-dev/protocol/openid-connect/auth?client_id=py-demo&redirect_uri=http://localhost:3000${location.pathname}?response_mode=query&response_type=token&scope=openid`
+        window.open(login_url, '_self')
         return
       }
       if (!user.userInfo) {

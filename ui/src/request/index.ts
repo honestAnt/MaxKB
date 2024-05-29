@@ -27,6 +27,8 @@ instance.interceptors.request.use(
     const token = user.getToken()
     if (token) {
       config.headers['AUTHORIZATION'] = `${token}`
+      config.headers['X-KEYCLOAK-AUTH'] = `true`
+      // config.headers['X-KEYCLOAK——AUTHORIZATION'] = `${token}`
     }
     return config
   },
@@ -61,7 +63,9 @@ instance.interceptors.response.use(
         !err.response.config.url.includes('chat/open') &&
         !err.response.config.url.includes('application/profile')
       ) {
-        router.push({ name: 'login' })
+        // router.push({ name: 'login' })
+        const  login_url = `http://localhost:18080/realms/flux-dev/protocol/openid-connect/auth?client_id=py-demo&redirect_uri=http://localhost:3000${location.pathname}?response_mode=query&response_type=token&scope=openid`
+        window.open(login_url, '_self')
       }
     }
 
