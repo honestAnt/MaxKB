@@ -23,3 +23,13 @@ EMBEDDING_MODEL_NAME: /Users/admin/Documents/maxkb/model/embedding/shibing624_te
 DEBUG: false
 
 TIME_ZONE: Asia/Shanghai
+
+# keycloak 配置
+KEYCLOAK_SERVER_URL: 'http://localhost:18080/'
+KEYCLOAK_REALM: 'flux-dev'
+KEYCLOAK_CLIENT_ID: 'py-demo'
+KEYCLOAK_CLIENT_SECRET: 'QFSfXL5STqFKeIbnsx1g3J27wb7pz75i'
+KEYCLOAK_MASTER_REALM: 'master'
+KEYCLOAK_ADMIN_CLIENT_ID: 'admin-cli'
+KEYCLOAK_ADMIN_USER: 'admin@admin.com'
+KEYCLOAK_ADMIN_PWD: 'admin'

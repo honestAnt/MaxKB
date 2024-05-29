@@ -4,7 +4,7 @@
     @Author：虎
     @file： authenticate.py
     @date：2024/3/14 03:02
-    @desc:  公共访问连接认证
+    @desc:  公共访问连接认证（对话聊天）
 """
 from django.db.models import QuerySet
 
