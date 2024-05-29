@@ -17,7 +17,8 @@ class TokenizerManage:
         if TokenizerManage.tokenizer is None:
             TokenizerManage.tokenizer = GPT2TokenizerFast.from_pretrained(
                 'gpt2',
-                cache_dir="/opt/maxkb/model/tokenizer",
+                # cache_dir="/opt/maxkb/model/tokenizer",
+                cache_dir="/Users/admin/Documents/maxkb/model/tokenizer",
                 local_files_only=True,
                 resume_download=False,
                 force_download=False)

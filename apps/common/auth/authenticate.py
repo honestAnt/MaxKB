@@ -10,11 +10,13 @@ import traceback
 
 from django.core import cache
 from django.core import signing
+from django.conf import settings
 from rest_framework.authentication import TokenAuthentication
 
 from common.auth.handle.impl.application_key import ApplicationKey
 from common.auth.handle.impl.public_access_token import PublicAccessToken
 from common.auth.handle.impl.user_token import UserToken
+from common.auth.handle.impl.keycloak_token import KeycloakToken
 from common.exception.app_exception import AppAuthenticationFailed, AppEmbedIdentityFailed, AppChatNumOutOfBoundsFailed
 
 token_cache = cache.caches['token_cache']
@@ -25,7 +27,7 @@ class AnonymousAuthentication(TokenAuthentication):
         return None, None
 
 
-handles = [UserToken(), PublicAccessToken(), ApplicationKey()]
+handles = [KeycloakToken(), UserToken(), PublicAccessToken(), ApplicationKey()]
 
 
 class TokenDetails:

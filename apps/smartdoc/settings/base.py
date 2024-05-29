@@ -2,6 +2,7 @@ import datetime
 import mimetypes
 import os
 from pathlib import Path
+from keycloak import KeycloakOpenID
 
 from ..const import CONFIG, PROJECT_DIR
 
@@ -173,3 +174,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Keycloak 配置
+KEYCLOAK_SERVER_URL = 'http://localhost:18080/'
+KEYCLOAK_REALM = 'flux-dev'
+KEYCLOAK_CLIENT_ID = 'py-demo'
+KEYCLOAK_CLIENT_SECRET = 'QFSfXL5STqFKeIbnsx1g3J27wb7pz75i'
+
+# Keycloak OpenID Client
+KEYCLOAK_OPENID = KeycloakOpenID(
+    server_url=KEYCLOAK_SERVER_URL,
+    client_id=KEYCLOAK_CLIENT_ID,
+    realm_name=KEYCLOAK_REALM,
+    client_secret_key=KEYCLOAK_CLIENT_SECRET
+)

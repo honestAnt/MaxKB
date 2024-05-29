@@ -12,6 +12,8 @@ from enum import Enum
 class AuthenticationType(Enum):
     # 普通用户
     USER = "USER"
+    # 普通用户
+    KEY_CLOAK = "KEY_CLOAK"
     # 公共访问链接
     APPLICATION_ACCESS_TOKEN = "APPLICATION_ACCESS_TOKEN"
     # key API
