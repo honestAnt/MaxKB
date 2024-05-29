@@ -4,8 +4,6 @@
     @file： authenticate.py
     @desc:  keycloak用户认证
 """
-
-import uuid
 from django.db.models import QuerySet
 
 from common.auth.handle.auth_base_handle import AuthBaseHandle
@@ -57,7 +55,7 @@ class KeycloakToken(AuthBaseHandle):
         user = QuerySet(User).filter(email=user_info['email']).first()
         if user is None:
             user = User(
-                **{'id': uuid.uuid1(), 'email': user_info['email'], 'username': user_info['preferred_username'],
+                **{'id': user_info["sub"], 'email': user_info['email'], 'username': user_info['preferred_username'],
                    'role': RoleConstants.USER.name})
             user.save()
 

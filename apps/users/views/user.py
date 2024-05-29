@@ -20,6 +20,7 @@ from common.auth.authentication import has_permissions
 from common.constants.permission_constants import PermissionConstants, CompareConstants, ViewPermission, RoleConstants
 from common.response import result
 from smartdoc.settings import JWT_AUTH
+from smartdoc.settings import KEYCLOAK_ADMIN
 from users.serializers.user_serializers import RegisterSerializer, LoginSerializer, CheckCodeSerializer, \
     RePasswordSerializer, \
     SendEmailSerializer, UserProfile, UserSerializer, UserManageSerializer, UserInstanceSerializer, SystemSerializer
@@ -119,6 +120,25 @@ class Logout(APIView):
                          tags=['用户'])
     def post(self, request: Request):
         token_cache.delete(request.META.get('HTTP_AUTHORIZATION'))
+        return result.success(True)
+
+
+class LogoutWithKeycloak(APIView):
+    authentication_classes = [TokenAuth]
+
+    @action(methods=['POST'], detail=False)
+    @permission_classes((AllowAny,))
+    @swagger_auto_schema(operation_summary="keyclaok登出",
+                         operation_id="keyclaok登出",
+                         responses=SendEmailSerializer().get_response_body_api(),
+                         tags=['用户'])
+    def post(self, request: Request):
+        token = request.META.get('HTTP_AUTHORIZATION')
+        cache_token = token_cache.get(token)
+        # keycloak 登出
+        KEYCLOAK_ADMIN.user_logout(cache_token.id)
+        token_cache.delete(token)
+
         return result.success(True)
 
 

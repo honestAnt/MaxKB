@@ -3,6 +3,8 @@ import mimetypes
 import os
 from pathlib import Path
 from keycloak import KeycloakOpenID
+from keycloak import KeycloakAdmin
+from keycloak import KeycloakOpenIDConnection
 
 from ..const import CONFIG, PROJECT_DIR
 
@@ -181,6 +183,10 @@ KEYCLOAK_SERVER_URL = 'http://localhost:18080/'
 KEYCLOAK_REALM = 'flux-dev'
 KEYCLOAK_CLIENT_ID = 'py-demo'
 KEYCLOAK_CLIENT_SECRET = 'QFSfXL5STqFKeIbnsx1g3J27wb7pz75i'
+KEYCLOAK_MASTER_REALM = 'master'
+KEYCLOAK_ADMIN_CLIENT_ID = 'admin-cli'
+KEYCLOAK_ADMIN_USER = 'admin@admin.com'
+KEYCLOAK_ADMIN_PWD = 'admin'
 
 # Keycloak OpenID Client
 KEYCLOAK_OPENID = KeycloakOpenID(
@@ -189,3 +195,14 @@ KEYCLOAK_OPENID = KeycloakOpenID(
     realm_name=KEYCLOAK_REALM,
     client_secret_key=KEYCLOAK_CLIENT_SECRET
 )
+
+keycloak_connection = KeycloakOpenIDConnection(
+                        server_url=KEYCLOAK_SERVER_URL,
+                        username=KEYCLOAK_ADMIN_USER,
+                        password=KEYCLOAK_ADMIN_PWD,
+                        realm_name=KEYCLOAK_REALM,
+                        user_realm_name=KEYCLOAK_MASTER_REALM,
+                        client_id=KEYCLOAK_ADMIN_CLIENT_ID,
+                        verify=True)
+
+KEYCLOAK_ADMIN = KeycloakAdmin(connection=keycloak_connection)

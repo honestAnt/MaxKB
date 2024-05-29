@@ -28,7 +28,8 @@ const login: (request: LoginRequest, loading?: Ref<boolean>) => Promise<Result<s
  * @returns
  */
 const logout: (loading?: Ref<boolean>) => Promise<Result<boolean>> = (loading) => {
-  return post('/user/logout', undefined, undefined, loading)
+  // return post('/user/logout', undefined, undefined, loading)
+  return post('/user/keycloak_logout', undefined, undefined, loading)
 }
 
 /**
