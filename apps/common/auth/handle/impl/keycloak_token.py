@@ -24,7 +24,7 @@ class KeycloakToken(AuthBaseHandle):
     def support(self, request, token: str, get_token_details):
         # 获取request对应header X-KEYCLOAK——AUTHORIZATION 的内容
         keycloak_auth = request.META.get('HTTP_X_KEYCLOAK_AUTH')
-        return bool(keycloak_auth)
+        return bool(keycloak_auth) and not str(token).startswith("application-")
 
     def handle(self, request, token: str, get_token_details):
         cache_token = token_cache.get(token)
@@ -47,7 +47,7 @@ class KeycloakToken(AuthBaseHandle):
         return user, Auth(role_list=[rule],
                           permission_list=permission_list,
                           client_id=str(user.id),
-                          client_type=AuthenticationType.USER.value,
+                          client_type=AuthenticationType.KEY_CLOAK.value,
                           current_role=rule)
 
     def sync_keycloak_user(self, user_info):

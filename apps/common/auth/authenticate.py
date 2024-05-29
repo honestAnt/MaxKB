@@ -27,7 +27,8 @@ class AnonymousAuthentication(TokenAuthentication):
         return None, None
 
 
-handles = [KeycloakToken(), UserToken(), PublicAccessToken(), ApplicationKey()]
+# handles = [KeycloakToken(), UserToken(), PublicAccessToken(), ApplicationKey()]
+handles = [PublicAccessToken(), ApplicationKey(), KeycloakToken(), UserToken()]
 
 
 class TokenDetails:
