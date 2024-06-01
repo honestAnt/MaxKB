@@ -11,16 +11,6 @@ pipeline {
         ]]])
       }
     }
-    stage('构建编译镜像') {
-          steps {
-            script {
-              docker.withRegistry("https://${CODING_DOCKER_REG_HOST}", "${CODING_ARTIFACTS_CREDENTIALS_ID}") {
-                sh "docker build -t ${CODING_DOCKER_IMAGE_NAME}-builder:latest --build-arg builder_image_tag=${CODING_BUILDER_IMAGE_DEFAULT_TAG} -f Dockerfile_gradle ${DOCKER_BUILD_CONTEXT}"
-                docker.image("${CODING_DOCKER_IMAGE_NAME}-builder:latest").push()
-              }
-            }
-          }
-        }
     stage('构建镜像') {
       steps {
         script {
