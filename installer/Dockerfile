@@ -37,8 +37,8 @@ ENV MAXKB_VERSION="${DOCKER_IMAGE_TAG} (build at ${BUILD_AT}, commit: ${GITHUB_C
     MAXKB_DB_NAME=maxkb \
     MAXKB_DB_HOST=127.0.0.1 \
     MAXKB_DB_PORT=5432  \
-    MAXKB_DB_USER=root \
-    MAXKB_DB_PASSWORD=Password123@postgres \
+    MAXKB_DB_USER=postgres \
+    MAXKB_DB_PASSWORD=ZtsRhrIU5M \
     MAXKB_EMBEDDING_MODEL_NAME=/opt/maxkb/model/embedding/shibing624_text2vec-base-chinese \
     MAXKB_EMBEDDING_MODEL_PATH=/opt/maxkb/model/embedding
 
@@ -50,8 +50,8 @@ COPY --from=vector-model /opt/maxkb/app/model /opt/maxkb/model
 ENV LANG=en_US.UTF-8 \
     PATH=/opt/py3/bin:$PATH
 
-ENV POSTGRES_USER root
-ENV POSTGRES_PASSWORD Password123@postgres
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD ZtsRhrIU5M
 
 RUN chmod 755 /opt/maxkb/app/installer/run-maxkb.sh && \
     cp -r /opt/maxkb/model/base/hub /opt/maxkb/model/tokenizer && \
