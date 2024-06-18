@@ -1,7 +1,7 @@
 #FROM harbor.megarobo.info/flux/maxkb/makb-vector-model:v1.0.1 as vector-model
-ARG NODE_PACKAGE_ENV
 FROM harbor.megarobo.info/flux/maxkb/maxkb-vector-model:v1.0.1 as vector-model
 FROM megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/node18-npm:builder-linux as web-build
+ARG NODE_PACKAGE_ENV
 COPY ui ui
 RUN cd ui && \
     npm install && \
