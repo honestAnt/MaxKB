@@ -1,11 +1,12 @@
-FROM harbor.megarobo.info/flux/maxkkb/maxkb-vector-model:v1.0.1 as vector-model
+#FROM harbor.megarobo.info/flux/maxkb/makb-vector-model:v1.0.1 as vector-model
+FROM harbor.megarobo.info/flux/maxkkb/makb-vector-model:v1.0.1 as vector-model
 FROM megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/node18-npm:builder-linux as web-build
 COPY ui ui
 RUN cd ui && \
     npm install && \
     npm run build && \
     rm -rf ./node_modules
-FROM harbor.megarobo.info/flux/maxkkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
+FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
 
 ARG DEPENDENCIES="                    \
         python3-pip"
