@@ -55,8 +55,7 @@ name = "mirrors"
 url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
 priority = "default"
 
-#[[tool.poetry.source]]
-#name = "pytorch"
-#url = "https://download.pytorch.org/whl/cpu"
-#priority = "explicit"
-#secondary=true
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"

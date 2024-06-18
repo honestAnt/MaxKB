@@ -1,0 +1,19 @@
+
+FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
+
+ARG DEPENDENCIES="                    \
+        python3-pip"
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends $DEPENDENCIES && \
+    apt-get clean all  && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY . /opt/maxkb/app
+WORKDIR /opt/maxkb/app
+RUN python3 -m venv /opt/py3 && \
+    pip install poetry --break-system-packages && \
+    poetry config virtualenvs.create false && \
+    . /opt/py3/bin/activate && \
+    if [ "$(uname -m)" = "x86_64" ]; then sed -i 's/^torch.*/torch = {version = "^2.2.1+cpu", source = "pytorch"}/g' pyproject.toml; fi && \
+    poetry lock && poetry install

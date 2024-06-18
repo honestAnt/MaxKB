@@ -6,15 +6,16 @@ RUN cd ui && \
     npm install && \
     npm run build && \
     rm -rf ./node_modules
-FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
+#FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
+FROM harbor.megarobo.info/flux/maxkb/maxkb-poetry:v0.0.1 as stage-build
 
-ARG DEPENDENCIES="                    \
-        python3-pip"
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends $DEPENDENCIES && \
-    apt-get clean all  && \
-    rm -rf /var/lib/apt/lists/*
+#ARG DEPENDENCIES="                    \
+#        python3-pip"
+#
+#RUN apt-get update && \
+#    apt-get install -y --no-install-recommends $DEPENDENCIES && \
+#    apt-get clean all  && \
+#    rm -rf /var/lib/apt/lists/*
 
 COPY . /opt/maxkb/app
 RUN mkdir -p /opt/maxkb/app /opt/maxkb/model /opt/maxkb/conf && \
