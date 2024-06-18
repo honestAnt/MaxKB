@@ -15,7 +15,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry("https://${CODING_DOCKER_REG_HOST}", "${CODING_ARTIFACTS_CREDENTIALS_ID}") {
-            sh "docker build -t ${CODING_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} -f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}"
+            sh "docker build -t ${CODING_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} --build-arg NODE_PACKAGE_ENV=${NODE_PACKAGE_ENV} -f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}"
           }
         }
 
@@ -41,5 +41,6 @@ pipeline {
     CODING_DOCKER_REG_HOST = "${CCI_CURRENT_TEAM}-docker.pkg.${CCI_CURRENT_DOMAIN}"
     CODING_DOCKER_IMAGE_NAME = "${PROJECT_NAME.toLowerCase()}/${DOCKER_REPO_NAME}/${DOCKER_IMAGE_NAME}"
     CODING_BUILDER_IMAGE_DEFAULT_TAG =sh(returnStdout: true, script: 'if [ $CODING_BUILDER_IMAGE_TAG ];then  echo "$CODING_BUILDER_IMAGE_TAG"; else echo "megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/flux-maxkb-builder:latest" ; fi').trim()
+    NODE_PACKAGE_ENV =sh(returnStdout: true, script: 'if [ $CCI_PACKAGE_ENV ];then  echo "$CCI_PACKAGE_ENV"; else echo "dev" ; fi').trim()
   }
 }

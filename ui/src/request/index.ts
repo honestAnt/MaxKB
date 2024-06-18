@@ -5,6 +5,7 @@ import type { Ref } from 'vue'
 import type { Result } from '@/request/Result'
 import useStore from '@/stores'
 import router from '@/router'
+import {login} from '@/utils/login'
 
 import { ref, type WritableComputedRef } from 'vue'
 
@@ -64,8 +65,7 @@ instance.interceptors.response.use(
         !err.response.config.url.includes('application/profile')
       ) {
         // router.push({ name: 'login' })
-        const  login_url = `http://localhost:18080/realms/flux-dev/protocol/openid-connect/auth?client_id=py-demo&redirect_uri=http://localhost:3000${location.pathname}?response_mode=query&response_type=token&scope=openid`
-        window.open(login_url, '_self')
+        login();
       }
     }
 

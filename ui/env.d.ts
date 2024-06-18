@@ -9,6 +9,10 @@ declare module 'markdown-it-sup'
 declare module 'markdown-it-toc-done-right'
 declare module 'katex'
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv & {
+    VITE_KEYCLOAK_URL: string;
+    VITE_KEYCLOAK_REALM: string;
+    VITE_KEYCLOAK_CLIENT_ID: string;
+  }
 }
 declare type Recordable<T = any> = Record<string, T>;

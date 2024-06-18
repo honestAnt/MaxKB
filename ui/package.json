@@ -5,9 +5,15 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "build-dev": "run-p type-check build-mode-dev",
+    "build-test": "run-p type-check build-mode-test",
+    "build-kunpeng": "run-p type-check build-mode-kunpeng",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "build-mode-dev": "vite build --mode dev",
+    "build-mode-test": "vite build --mode test",
+    "build-mode-kunpeng": "vite build --mode kunpeng",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
