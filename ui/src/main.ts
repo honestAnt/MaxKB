@@ -21,8 +21,9 @@ app.use(ElementPlus, {
   locale: zhCn
 })
 
+const location: Location = window.location;
 // 如果没有登录，重定向到 login
-var access_token = new URLSearchParams(new URL(location).hash).get("access_token");
+var access_token = new URLSearchParams(new URL(location.href).hash).get("access_token");
 if (access_token) {
   console.log("ak: " + access_token);
   localStorage.setItem('token', access_token)
