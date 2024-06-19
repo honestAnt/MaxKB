@@ -62,7 +62,7 @@ class TokenAuth(TokenAuthentication):
             print("未匹配到认证过滤器，认证失败")
             raise AppAuthenticationFailed(1002, "身份验证信息不正确！非法用户")
         except Exception as e:
-            print("认证过滤器异常，认证失败")
+            print(f"认证过滤器异常，认证失败: {e}")
             traceback.format_exc()
             if isinstance(e, AppEmbedIdentityFailed) or isinstance(e, AppChatNumOutOfBoundsFailed):
                 raise e

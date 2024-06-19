@@ -29,7 +29,6 @@ class UserToken(AuthBaseHandle):
         return 'id' in auth_details and auth_details.get('type') == AuthenticationType.USER.value
 
     def handle(self, request, token: str, get_token_details):
-        print("准备进行基础用户认证")
         cache_token = token_cache.get(token)
         if cache_token is None:
             raise AppAuthenticationFailed(1002, "登录过期")

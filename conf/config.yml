@@ -10,8 +10,8 @@ EMAIL_HOST_PASSWORD: Kcwj5gwxt5WY9J3z
 # 数据库链接信息
 DB_NAME: maxkb_dev
 # DB_HOST: 192.168.3.134
-DB_HOST: localhost
-DB_PORT: 5432
+DB_HOST: 192.168.3.133
+DB_PORT: 15442
 DB_USER: maxkb_dev
 DB_PASSWORD: maxkb_dev
 #DB_USER: postgres
@@ -27,8 +27,8 @@ TIME_ZONE: Asia/Shanghai
 # keycloak 配置
 KEYCLOAK_SERVER_URL: 'http://localhost:18080/'
 KEYCLOAK_REALM: 'flux-dev'
-KEYCLOAK_CLIENT_ID: 'py-demo'
-KEYCLOAK_CLIENT_SECRET: 'QFSfXL5STqFKeIbnsx1g3J27wb7pz75i'
+KEYCLOAK_CLIENT_ID: 'maxkb'
+KEYCLOAK_CLIENT_SECRET: 'ruo16f46MYHMHyDiUWMdlEZG7j1PNdKD'
 KEYCLOAK_MASTER_REALM: 'master'
 KEYCLOAK_ADMIN_CLIENT_ID: 'admin-cli'
 KEYCLOAK_ADMIN_USER: 'admin@admin.com'

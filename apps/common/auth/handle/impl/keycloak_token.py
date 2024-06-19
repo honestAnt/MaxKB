@@ -11,7 +11,7 @@ from common.constants.authentication_type import AuthenticationType
 from common.constants.permission_constants import RoleConstants, get_permission_list_by_role, Auth
 from common.exception.app_exception import AppAuthenticationFailed
 from smartdoc.settings import JWT_AUTH
-from smartdoc.settings import KEYCLOAK_OPENID
+from smartdoc.settings import KEYCLOAK_OPENID,KEYCLOAK_SERVER_URL,KEYCLOAK_CLIENT_ID,KEYCLOAK_REALM,KEYCLOAK_CLIENT_SECRET
 from users.models import User
 from django.core import cache
 
@@ -24,11 +24,9 @@ class KeycloakToken(AuthBaseHandle):
     def support(self, request, token: str, get_token_details):
         # 获取request对应header X-KEYCLOAK—AUTH 的内容
         keycloak_auth = request.META.get('HTTP_X_KEYCLOAK_AUTH')
-        print(f"keycloak认证: {keycloak_auth}")
         return bool(keycloak_auth) and not str(token).startswith("application-")
 
     def handle(self, request, token: str, get_token_details):
-        print("准备进行keycloak认证")
         cache_token = token_cache.get(token)
         # 缓存token为空则从keycloak获取
         if cache_token is None:
