@@ -3,7 +3,14 @@
   <div class="top-bar-container border-b flex-between">
     <div class="flex-center h-full">
       <div class="app-title-container flex-center cursor" @click="router.push('/')">
-        <div class="app-title-icon"></div>
+<!--        <div class="app-title-icon"></div>-->
+        <div class="flex-center avatar">
+          <AppIcon
+            iconName="app-reading"
+            class="color-secondary mr-8 ml-8"
+            style="font-size: 20px"></AppIcon>
+        </div>
+
         <div class="app-title-text app-logo-font ml-4">
           {{ defaultTitle }}
         </div>
