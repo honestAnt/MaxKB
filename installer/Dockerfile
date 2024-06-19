@@ -2,6 +2,7 @@
 FROM harbor.megarobo.info/flux/maxkb/maxkb-vector-model:v1.0.1 as vector-model
 FROM megarobo-biolauto-docker.pkg.coding.net/hephaestus/docker-image/node18-npm:builder-linux as web-build
 ARG NODE_PACKAGE_ENV
+RUN rm -rf ui
 COPY ui ui
 RUN cd ui && \
     npm install && \
