@@ -7,6 +7,6 @@
 #until pg_isready --host=127.0.0.1; do sleep 1 && echo "waiting for postgres"; done
 
 # Start MaxKB
-npm run dev
+#npm run dev
 python /opt/maxkb/app/main.py start
 

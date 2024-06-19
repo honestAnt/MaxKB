@@ -6,7 +6,7 @@ RUN rm -rf ui
 COPY ui ui
 RUN cd ui && \
     npm install && \
-    npm run build-$NODE_PACKAGE_ENV && \
+    npm run build-${NODE_PACKAGE_ENV} && \
     rm -rf ./node_modules
 #FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6 as stage-build
 FROM harbor.megarobo.info/flux/maxkb/maxkb-poetry:v0.0.1 as stage-build
@@ -22,7 +22,8 @@ FROM harbor.megarobo.info/flux/maxkb/maxkb-poetry:v0.0.1 as stage-build
 COPY . /opt/maxkb/app
 RUN mkdir -p /opt/maxkb/app /opt/maxkb/model /opt/maxkb/conf && \
     rm -rf /opt/maxkb/app/ui
-COPY --from=web-build ui /opt/maxkb/app/ui
+#COPY --from=web-build ui /opt/maxkb/app/ui
+COPY --from=web-build ui/dist/ui /opt/maxkb/app/ui
 WORKDIR /opt/maxkb/app
 RUN python3 -m venv /opt/py3 && \
     pip install poetry --break-system-packages && \
