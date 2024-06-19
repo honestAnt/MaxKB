@@ -24,6 +24,7 @@ class KeycloakToken(AuthBaseHandle):
     def support(self, request, token: str, get_token_details):
         # 获取request对应header X-KEYCLOAK—AUTH 的内容
         keycloak_auth = request.META.get('HTTP_X_KEYCLOAK_AUTH')
+        print(f"keycloak认证: {keycloak_auth}")
         return bool(keycloak_auth) and not str(token).startswith("application-")
 
     def handle(self, request, token: str, get_token_details):

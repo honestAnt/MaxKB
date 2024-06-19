@@ -59,8 +59,10 @@ class TokenAuth(TokenAuthentication):
             for handle in handles:
                 if handle.support(request, auth, token_details.get_token_details):
                     return handle.handle(request, auth, token_details.get_token_details)
+            print("未匹配到认证过滤器，认证失败")
             raise AppAuthenticationFailed(1002, "身份验证信息不正确！非法用户")
         except Exception as e:
+            print("认证过滤器异常，认证失败")
             traceback.format_exc()
             if isinstance(e, AppEmbedIdentityFailed) or isinstance(e, AppChatNumOutOfBoundsFailed):
                 raise e
