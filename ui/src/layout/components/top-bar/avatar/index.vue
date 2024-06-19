@@ -23,7 +23,7 @@
         <el-dropdown-item class="border-t p-8" @click="openResetPassword">
           {{ $t("layout.topbar.avatar.resetPassword") }}
         </el-dropdown-item>
-        <el-dropdown-item class="border-t" @click="openAbout"> {{ $t("layout.topbar.avatar.about") }} </el-dropdown-item>
+<!--        <el-dropdown-item class="border-t" @click="openAbout"> {{ $t("layout.topbar.avatar.about") }} </el-dropdown-item>-->
         <el-dropdown-item class="border-t" @click="logout"> {{ $t("layout.topbar.avatar.logout") }} </el-dropdown-item>
       </el-dropdown-menu>
     </template>
