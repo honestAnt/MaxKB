@@ -23,7 +23,7 @@ COPY . /opt/maxkb/app
 RUN mkdir -p /opt/maxkb/app /opt/maxkb/model /opt/maxkb/conf && \
     rm -rf /opt/maxkb/app/ui
 #COPY --from=web-build ui /opt/maxkb/app/ui
-COPY --from=web-build ui/dist/ui /opt/maxkb/app/ui
+COPY --from=web-build ui /opt/maxkb/app/ui
 WORKDIR /opt/maxkb/app
 RUN python3 -m venv /opt/py3 && \
     pip install poetry --break-system-packages && \
@@ -33,6 +33,7 @@ RUN python3 -m venv /opt/py3 && \
     poetry lock && poetry install
 
 FROM harbor.megarobo.info/flux/maxkb/maxkb-python-pg:python3.11-pg15.6
+ARG NODE_PACKAGE_ENV
 ARG DOCKER_IMAGE_TAG=dev \
     BUILD_AT \
     GITHUB_COMMIT
@@ -67,4 +68,4 @@ RUN chmod 755 /opt/maxkb/app/installer/run-maxkb.sh && \
 EXPOSE 8080
 
 ENTRYPOINT ["bash", "-c"]
-CMD [ "/usr/bin/run-maxkb.sh" ]
+CMD [ "/usr/bin/run-maxkb.sh ${NODE_PACKAGE_ENV}" ]

@@ -8,5 +8,6 @@
 
 # Start MaxKB
 #npm run dev
+npm run dev --mode $0
 python /opt/maxkb/app/main.py start
 
