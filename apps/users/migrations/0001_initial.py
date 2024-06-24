@@ -9,9 +9,9 @@ from users.models import password_encrypt
 
 def insert_default_data(apps, schema_editor):
     UserModel = apps.get_model('users', 'User')
-    UserModel.objects.create(id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', email='', username='admin',
+    UserModel.objects.create(id='f0dd8f71-e4ee-11ee-8c84-a8a1595801ab', email='admin@123.com', username='admin',
                              nick_name="系统管理员",
-                             password=password_encrypt('MaxKB@123..'),
+                             password=password_encrypt('admin123'),
                              role=RoleConstants.ADMIN.name,
                              is_active=True)
 
