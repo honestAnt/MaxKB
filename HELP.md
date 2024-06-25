@@ -3,8 +3,9 @@
 ## 创建用户
     CREATE USER maxkb_kunpeng WITH PASSWORD 'maxkb_kunpeng';
 
-# 创建数据库
+## 创建数据库
     CREATE DATABASE maxkb_kunpeng OWNER maxkb_kunpeng;
+    CREATE EXTENSION "vector";
 
 ## 分配权限
     GRANT ALL PRIVILEGES ON DATABASE maxkb_kunpeng TO maxkb_kunpeng;
